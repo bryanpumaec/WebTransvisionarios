@@ -10,6 +10,7 @@ export const SITE: SiteConfig = {
   telefono: '+593 99 999 9999',
   email: 'contacto@transvisionarios.com',
   direccion: 'Quito, Ecuador',
+  horario: 'Lunes a viernes, 08:00 a 18:00',
 };
 
 export const SERVICIOS: Servicio[] = [

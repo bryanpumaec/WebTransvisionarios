@@ -30,6 +30,11 @@
   --color-border: #e2e6ec;
   --color-muted: #f1f4f8;
   --color-muted-foreground: #5b6b82;
+
+  --color-input: #d7dee7;
+  --color-ring: var(--color-accent);
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
 }
 
 :root {

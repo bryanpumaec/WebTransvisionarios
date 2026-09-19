@@ -12,4 +12,5 @@ export interface SiteConfig {
   telefono: string;
   email: string;
   direccion: string;
+  horario: string;
 }

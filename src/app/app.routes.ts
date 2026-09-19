@@ -18,8 +18,8 @@ export const routes: Routes = [
   },
   {
     path: 'contacto',
-    loadComponent: () => import('./shared/coming-soon/coming-soon').then((m) => m.ComingSoon),
-    title: 'Contacto | Transvisionarios S.A.',
+    loadComponent: () => import('./features/contacto/contacto').then((m) => m.Contacto),
+    title: 'Contacto y cotizaciones | Transvisionarios S.A.',
   },
   { path: '**', redirectTo: '' },
 ];

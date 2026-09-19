@@ -12,17 +12,26 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+app.use(express.json());
+
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
+ * Recibe el formulario de contacto.
  *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
+ * TODO: esto solo valida y registra el mensaje en el log del servidor.
+ * Falta conectar el envío real (SMTP/Resend/CRM, etc.) — pendiente de
+ * definir con el cliente qué servicio de correo/CRM usar.
  */
+app.post('/api/contacto', (req, res) => {
+  const { nombre, email, telefono, comentario } = req.body ?? {};
+
+  if (!nombre || !email || !telefono || !comentario) {
+    res.status(400).json({ ok: false, error: 'Faltan campos obligatorios.' });
+    return;
+  }
+
+  console.log('[contacto] nuevo mensaje recibido:', req.body);
+  res.json({ ok: true });
+});
 
 /**
  * Serve static files from /browser

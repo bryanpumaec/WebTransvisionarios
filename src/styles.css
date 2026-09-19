@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/*
+ * Tokens de diseño provisionales (inferidos del código React original).
+ * Ajusta estos valores cuando compartas el tailwind.config / index.css reales
+ * del proyecto Vite para igualar el diseño al 100%.
+ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Oswald", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #ffffff;
+  --color-foreground: #0f1b2d;
+
+  --color-primary: #10213b;
+  --color-primary-foreground: #f7f9fc;
+
+  --color-secondary: #f1f4f8;
+  --color-secondary-foreground: #10213b;
+
+  --color-accent: #f5a524;
+  --color-accent-foreground: #10213b;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #10213b;
+
+  --color-border: #e2e6ec;
+  --color-muted: #f1f4f8;
+  --color-muted-foreground: #5b6b82;
+}
+
+:root {
+  --gradient-hero: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-primary) 55%, transparent) 0%,
+    color-mix(in srgb, var(--color-primary) 88%, transparent) 100%
+  );
+  --shadow-elevated: 0 10px 30px -12px color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}

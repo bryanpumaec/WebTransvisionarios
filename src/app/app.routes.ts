@@ -8,8 +8,13 @@ export const routes: Routes = [
   },
   {
     path: 'servicios',
+    loadComponent: () => import('./features/servicios/servicios').then((m) => m.Servicios),
+    title: 'Servicios logísticos, aduaneros y tránsitos | Transvisionarios',
+  },
+  {
+    path: 'nosotros',
     loadComponent: () => import('./shared/coming-soon/coming-soon').then((m) => m.ComingSoon),
-    title: 'Servicios | Transvisionarios S.A.',
+    title: 'Nosotros | Transvisionarios S.A.',
   },
   {
     path: 'contacto',

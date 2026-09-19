@@ -1,0 +1,66 @@
+<header class="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a routerLink="/" (click)="close()" class="flex items-center gap-3">
+      <img
+        src="/images/logo.png"
+        [attr.alt]="'Logotipo de ' + site.nombre"
+        width="48"
+        height="48"
+        class="h-12 w-12"
+      />
+      <span class="leading-tight">
+        <span class="block font-display text-xl font-bold uppercase tracking-wide text-primary">
+          Transvisionarios
+        </span>
+        <span class="block text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+          Transporte internacional de carga
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 md:flex">
+      @for (l of links; track l.to) {
+        <a
+          [routerLink]="l.to"
+          routerLinkActive="bg-secondary text-primary"
+          [routerLinkActiveOptions]="{ exact: l.to === '/' }"
+          class="rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+        >
+          {{ l.label }}
+        </a>
+      }
+      <a
+        routerLink="/contacto"
+        class="ml-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+      >
+        Cotizar
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      aria-label="Abrir menú"
+      [attr.aria-expanded]="open()"
+      (click)="toggle()"
+      class="rounded-md border border-border p-2 md:hidden"
+    >
+      <svg lucideMenu class="h-5 w-5"></svg>
+    </button>
+  </div>
+
+  <div class="border-t border-border md:hidden" [class.block]="open()" [class.hidden]="!open()">
+    <nav class="mx-auto flex max-w-6xl flex-col px-4 py-2">
+      @for (l of links; track l.to) {
+        <a
+          [routerLink]="l.to"
+          (click)="close()"
+          routerLinkActive="bg-secondary text-primary"
+          [routerLinkActiveOptions]="{ exact: l.to === '/' }"
+          class="rounded-md px-3 py-2 text-sm font-medium hover:bg-secondary"
+        >
+          {{ l.label }}
+        </a>
+      }
+    </nav>
+  </div>
+</header>

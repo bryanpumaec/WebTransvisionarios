@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'nosotros',
-    loadComponent: () => import('./shared/coming-soon/coming-soon').then((m) => m.ComingSoon),
+    loadComponent: () => import('./features/nosotros/nosotros').then((m) => m.Nosotros),
     title: 'Nosotros | Transvisionarios S.A.',
   },
   {

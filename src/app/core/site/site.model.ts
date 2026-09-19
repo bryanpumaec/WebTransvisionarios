@@ -1,16 +1,16 @@
-export interface Servicio {
+export interface Service {
   slug: string;
-  titulo: string;
-  resumen: string;
-  detalle: string[];
-  beneficio: string;
+  title: string;
+  summary: string;
+  details: string[];
+  benefit: string;
 }
 
 export interface SiteConfig {
-  nombre: string;
+  name: string;
   tagline: string;
-  telefono: string;
+  phone: string;
   email: string;
-  direccion: string;
-  horario: string;
+  address: string;
+  hours: string;
 }

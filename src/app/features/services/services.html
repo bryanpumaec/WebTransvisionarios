@@ -9,16 +9,16 @@
   </header>
 
   <div class="mx-auto max-w-6xl space-y-16 px-4 py-16">
-    @for (s of servicios; track s.slug; let i = $index) {
+    @for (s of services; track s.slug; let i = $index) {
       <section [id]="s.slug" class="grid scroll-mt-24 gap-8 md:grid-cols-[1fr_1.2fr]">
         <div>
           <span class="font-display text-6xl font-bold text-accent/25">{{ pad(i + 1) }}</span>
-          <h2 class="font-display text-3xl font-bold uppercase text-primary">{{ s.titulo }}</h2>
-          <p class="mt-3 text-muted-foreground">{{ s.resumen }}</p>
+          <h2 class="font-display text-3xl font-bold uppercase text-primary">{{ s.title }}</h2>
+          <p class="mt-3 text-muted-foreground">{{ s.summary }}</p>
         </div>
         <div class="rounded-lg border border-border bg-card p-6">
           <ul class="space-y-3">
-            @for (d of s.detalle; track d) {
+            @for (d of s.details; track d) {
               <li class="flex gap-3 text-sm">
                 <svg lucideCheck class="mt-0.5 h-4 w-4 shrink-0 text-accent"></svg>
                 <span>{{ d }}</span>
@@ -26,7 +26,7 @@
             }
           </ul>
           <p class="mt-6 border-l-4 border-accent pl-4 text-sm font-medium text-primary">
-            {{ s.beneficio }}
+            {{ s.benefit }}
           </p>
         </div>
       </section>

@@ -15,21 +15,21 @@ const angularApp = new AngularNodeAppEngine();
 app.use(express.json());
 
 /**
- * Recibe el formulario de contacto.
+ * Receives the contact form submission.
  *
- * TODO: esto solo valida y registra el mensaje en el log del servidor.
- * Falta conectar el envío real (SMTP/Resend/CRM, etc.) — pendiente de
- * definir con el cliente qué servicio de correo/CRM usar.
+ * TODO: this only validates and logs the message on the server.
+ * Real delivery (SMTP/Resend/CRM, etc.) still needs to be wired up —
+ * pending confirmation from the client on which email/CRM service to use.
  */
-app.post('/api/contacto', (req, res) => {
-  const { nombre, email, telefono, comentario } = req.body ?? {};
+app.post('/api/contact', (req, res) => {
+  const { name, email, phone, comment } = req.body ?? {};
 
-  if (!nombre || !email || !telefono || !comentario) {
+  if (!name || !email || !phone || !comment) {
     res.status(400).json({ ok: false, error: 'Faltan campos obligatorios.' });
     return;
   }
 
-  console.log('[contacto] nuevo mensaje recibido:', req.body);
+  console.log('[contact] new message received:', req.body);
   res.json({ ok: true });
 });
 

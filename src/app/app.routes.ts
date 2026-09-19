@@ -8,17 +8,17 @@ export const routes: Routes = [
   },
   {
     path: 'servicios',
-    loadComponent: () => import('./features/servicios/servicios').then((m) => m.Servicios),
+    loadComponent: () => import('./features/services/services').then((m) => m.Services),
     title: 'Servicios logísticos, aduaneros y tránsitos | Transvisionarios',
   },
   {
     path: 'nosotros',
-    loadComponent: () => import('./features/nosotros/nosotros').then((m) => m.Nosotros),
+    loadComponent: () => import('./features/about/about').then((m) => m.About),
     title: 'Nosotros | Transvisionarios S.A.',
   },
   {
     path: 'contacto',
-    loadComponent: () => import('./features/contacto/contacto').then((m) => m.Contacto),
+    loadComponent: () => import('./features/contact/contact').then((m) => m.Contact),
     title: 'Contacto y cotizaciones | Transvisionarios S.A.',
   },
   { path: '**', redirectTo: '' },

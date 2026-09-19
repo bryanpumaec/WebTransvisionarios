@@ -45,14 +45,14 @@
 
   <section class="mx-auto max-w-6xl px-4 py-16">
     <div class="grid gap-6 md:grid-cols-3">
-      @for (s of servicios; track s.slug) {
+      @for (s of services; track s.slug) {
         <article
           class="group relative overflow-hidden rounded-lg border border-border bg-card p-6"
           style="box-shadow: var(--shadow-elevated)"
         >
           <div class="absolute inset-x-0 top-0 h-1 bg-accent"></div>
-          <h2 class="font-display text-2xl font-bold uppercase text-primary">{{ s.titulo }}</h2>
-          <p class="mt-3 text-sm text-muted-foreground">{{ s.resumen }}</p>
+          <h2 class="font-display text-2xl font-bold uppercase text-primary">{{ s.title }}</h2>
+          <p class="mt-3 text-sm text-muted-foreground">{{ s.summary }}</p>
           <a
             routerLink="/servicios"
             [fragment]="s.slug"
@@ -68,7 +68,7 @@
 
   <section class="bg-secondary py-16">
     <div class="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-4">
-      @for (f of diferenciales; track f.titulo) {
+      @for (f of differentiators; track f.title) {
         <div>
           @switch (f.icon) {
             @case ('truck') {
@@ -84,8 +84,8 @@
               <svg lucideTimer class="h-8 w-8 text-accent"></svg>
             }
           }
-          <h3 class="mt-3 font-display text-xl font-bold uppercase text-primary">{{ f.titulo }}</h3>
-          <p class="mt-1 text-sm text-muted-foreground">{{ f.texto }}</p>
+          <h3 class="mt-3 font-display text-xl font-bold uppercase text-primary">{{ f.title }}</h3>
+          <p class="mt-1 text-sm text-muted-foreground">{{ f.text }}</p>
         </div>
       }
     </div>

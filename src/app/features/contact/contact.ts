@@ -4,39 +4,39 @@ import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 import { LucideClock, LucideMail, LucideMapPin, LucidePhone } from '@lucide/angular';
 
-import { ContactoService } from '../../core/contacto/contacto.service';
-import { ContactInput, SERVICIO_OPTIONS } from '../../core/contacto/contacto.model';
+import { ContactService } from '../../core/contact/contact.service';
+import { ContactInput, SERVICE_OPTIONS } from '../../core/contact/contact.model';
 import { SeoService } from '../../core/seo/seo.service';
 import { SITE } from '../../core/site/site.data';
 
-type FormControlName = 'nombre' | 'empresa' | 'email' | 'telefono' | 'servicio' | 'comentario';
+type FormControlName = 'name' | 'company' | 'email' | 'phone' | 'service' | 'comment';
 
 @Component({
-  selector: 'app-contacto',
+  selector: 'app-contact',
   standalone: true,
   imports: [ReactiveFormsModule, Toast, LucideClock, LucideMail, LucideMapPin, LucidePhone],
-  templateUrl: './contacto.html',
+  templateUrl: './contact.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Contacto {
+export class Contact {
   private readonly fb = inject(FormBuilder);
-  private readonly contactoService = inject(ContactoService);
+  private readonly contactService = inject(ContactService);
   private readonly messageService = inject(MessageService);
   private readonly seo = inject(SeoService);
 
   protected readonly site = SITE;
-  protected readonly servicioOptions = SERVICIO_OPTIONS;
+  protected readonly serviceOptions = SERVICE_OPTIONS;
   protected readonly sending = signal(false);
   protected readonly fieldClass =
     'w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring';
 
   protected readonly form = this.fb.nonNullable.group({
-    nombre: ['', [Validators.required, Validators.maxLength(100)]],
-    empresa: ['', [Validators.maxLength(120)]],
+    name: ['', [Validators.required, Validators.maxLength(100)]],
+    company: ['', [Validators.maxLength(120)]],
     email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-    telefono: ['', [Validators.required, Validators.maxLength(30)]],
-    servicio: ['logisticos', [Validators.required]],
-    comentario: ['', [Validators.required, Validators.maxLength(1500)]],
+    phone: ['', [Validators.required, Validators.maxLength(30)]],
+    service: ['logisticos', [Validators.required]],
+    comment: ['', [Validators.required, Validators.maxLength(1500)]],
   });
 
   constructor() {
@@ -75,7 +75,7 @@ export class Contacto {
     this.sending.set(true);
     const data = this.form.getRawValue() as ContactInput;
 
-    this.contactoService.enviar(data).subscribe((res) => {
+    this.contactService.send(data).subscribe((res) => {
       this.sending.set(false);
       if (res.ok) {
         this.messageService.add({
@@ -83,7 +83,7 @@ export class Contacto {
           summary: 'Mensaje enviado',
           detail: 'Le responderemos a la brevedad.',
         });
-        this.form.reset({ servicio: 'logisticos' });
+        this.form.reset({ service: 'logisticos' });
       } else {
         this.messageService.add({ severity: 'error', summary: 'No se pudo enviar', detail: res.error });
       }

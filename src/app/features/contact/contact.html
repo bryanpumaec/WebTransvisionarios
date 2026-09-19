@@ -16,7 +16,7 @@
       <ul class="space-y-3 text-sm">
         <li class="flex items-center gap-3">
           <svg lucidePhone class="h-4 w-4 text-accent"></svg>
-          {{ site.telefono }}
+          {{ site.phone }}
         </li>
         <li class="flex items-center gap-3">
           <svg lucideMail class="h-4 w-4 text-accent"></svg>
@@ -24,11 +24,11 @@
         </li>
         <li class="flex items-center gap-3">
           <svg lucideMapPin class="h-4 w-4 text-accent"></svg>
-          {{ site.direccion }}
+          {{ site.address }}
         </li>
         <li class="flex items-center gap-3">
           <svg lucideClock class="h-4 w-4 text-accent"></svg>
-          {{ site.horario }}
+          {{ site.hours }}
         </li>
       </ul>
       <p class="rounded-lg bg-secondary p-4 text-sm text-muted-foreground">
@@ -39,15 +39,15 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="rounded-lg border border-border bg-card p-6" novalidate>
       <div class="grid gap-4 sm:grid-cols-2">
         <div>
-          <label for="nombre" class="mb-1 block text-sm font-medium">Nombre *</label>
-          <input id="nombre" [class]="fieldClass" maxlength="100" formControlName="nombre" />
-          @if (errorFor('nombre'); as error) {
+          <label for="name" class="mb-1 block text-sm font-medium">Nombre *</label>
+          <input id="name" [class]="fieldClass" maxlength="100" formControlName="name" />
+          @if (errorFor('name'); as error) {
             <p class="mt-1 text-xs text-destructive">{{ error }}</p>
           }
         </div>
         <div>
-          <label for="empresa" class="mb-1 block text-sm font-medium">Empresa</label>
-          <input id="empresa" [class]="fieldClass" maxlength="120" formControlName="empresa" />
+          <label for="company" class="mb-1 block text-sm font-medium">Empresa</label>
+          <input id="company" [class]="fieldClass" maxlength="120" formControlName="company" />
         </div>
         <div>
           <label for="email" class="mb-1 block text-sm font-medium">Correo *</label>
@@ -57,24 +57,24 @@
           }
         </div>
         <div>
-          <label for="telefono" class="mb-1 block text-sm font-medium">Teléfono *</label>
-          <input id="telefono" [class]="fieldClass" maxlength="30" formControlName="telefono" />
-          @if (errorFor('telefono'); as error) {
+          <label for="phone" class="mb-1 block text-sm font-medium">Teléfono *</label>
+          <input id="phone" [class]="fieldClass" maxlength="30" formControlName="phone" />
+          @if (errorFor('phone'); as error) {
             <p class="mt-1 text-xs text-destructive">{{ error }}</p>
           }
         </div>
         <div class="sm:col-span-2">
-          <label for="servicio" class="mb-1 block text-sm font-medium">Servicio de interés</label>
-          <select id="servicio" [class]="fieldClass" formControlName="servicio">
-            @for (opt of servicioOptions; track opt.value) {
+          <label for="service" class="mb-1 block text-sm font-medium">Servicio de interés</label>
+          <select id="service" [class]="fieldClass" formControlName="service">
+            @for (opt of serviceOptions; track opt.value) {
               <option [value]="opt.value">{{ opt.label }}</option>
             }
           </select>
         </div>
         <div class="sm:col-span-2">
-          <label for="comentario" class="mb-1 block text-sm font-medium">Comentario *</label>
-          <textarea id="comentario" rows="5" [class]="fieldClass" maxlength="1500" formControlName="comentario"></textarea>
-          @if (errorFor('comentario'); as error) {
+          <label for="comment" class="mb-1 block text-sm font-medium">Comentario *</label>
+          <textarea id="comment" rows="5" [class]="fieldClass" maxlength="1500" formControlName="comment"></textarea>
+          @if (errorFor('comment'); as error) {
             <p class="mt-1 text-xs text-destructive">{{ error }}</p>
           }
         </div>

@@ -3,19 +3,19 @@ import { RouterLink } from '@angular/router';
 import { LucideArrowRight, LucideCheck } from '@lucide/angular';
 
 import { SeoService } from '../../core/seo/seo.service';
-import { SERVICIOS } from '../../core/site/site.data';
+import { SERVICES } from '../../core/site/site.data';
 
 @Component({
-  selector: 'app-servicios',
+  selector: 'app-services',
   standalone: true,
   imports: [RouterLink, LucideArrowRight, LucideCheck],
-  templateUrl: './servicios.html',
+  templateUrl: './services.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Servicios {
+export class Services {
   private readonly seo = inject(SeoService);
 
-  protected readonly servicios = SERVICIOS;
+  protected readonly services = SERVICES;
 
   constructor() {
     this.seo.set({

@@ -4,7 +4,7 @@
       <p class="mb-3 border-l-4 border-accent pl-3 text-sm font-semibold uppercase tracking-[0.2em]">
         Quiénes somos
       </p>
-      <h1 class="font-display text-4xl font-bold uppercase md:text-6xl">{{ site.nombre }}</h1>
+      <h1 class="font-display text-4xl font-bold uppercase md:text-6xl">{{ site.name }}</h1>
     </div>
   </header>
 
@@ -16,7 +16,7 @@
     </p>
 
     <div class="mt-12 grid gap-6 md:grid-cols-3">
-      @for (b of bloques; track b.titulo) {
+      @for (b of blocks; track b.title) {
         <div class="rounded-lg border border-border bg-card p-6">
           @switch (b.icon) {
             @case ('target') {
@@ -29,17 +29,17 @@
               <svg lucideHandshake class="h-8 w-8 text-accent"></svg>
             }
           }
-          <h2 class="mt-3 font-display text-2xl font-bold uppercase text-primary">{{ b.titulo }}</h2>
-          <p class="mt-2 text-sm text-muted-foreground">{{ b.texto }}</p>
+          <h2 class="mt-3 font-display text-2xl font-bold uppercase text-primary">{{ b.title }}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{{ b.text }}</p>
         </div>
       }
     </div>
 
     <div class="mt-12 grid gap-6 rounded-lg bg-secondary p-8 sm:grid-cols-3">
-      @for (s of estadisticas; track s.k) {
+      @for (s of statistics; track s.value) {
         <div>
-          <div class="font-display text-4xl font-bold text-accent">{{ s.k }}</div>
-          <div class="text-sm text-muted-foreground">{{ s.v }}</div>
+          <div class="font-display text-4xl font-bold text-accent">{{ s.value }}</div>
+          <div class="text-sm text-muted-foreground">{{ s.label }}</div>
         </div>
       }
     </div>

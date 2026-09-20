@@ -37,56 +37,70 @@
     </aside>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="rounded-lg border border-border bg-card p-6" novalidate>
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-6 sm:grid-cols-2">
         <div>
-          <label for="name" class="mb-1 block text-sm font-medium">Nombre *</label>
-          <input pInputText id="name" class="w-full" formControlName="name" [invalid]="!!errorFor('name')" />
+          <p-floatlabel variant="in">
+            <input pInputText id="name" class="w-full" formControlName="name" [invalid]="!!errorFor('name')" />
+            <label for="name">Nombre *</label>
+          </p-floatlabel>
           @if (errorFor('name'); as error) {
             <p-message severity="error" variant="simple" size="small" styleClass="mt-1">{{ error }}</p-message>
           }
         </div>
         <div>
-          <label for="company" class="mb-1 block text-sm font-medium">Empresa</label>
-          <input pInputText id="company" class="w-full" formControlName="company" [invalid]="!!errorFor('company')" />
+          <p-floatlabel variant="in">
+            <input pInputText id="company" class="w-full" formControlName="company" [invalid]="!!errorFor('company')" />
+            <label for="company">Empresa</label>
+          </p-floatlabel>
           @if (errorFor('company'); as error) {
             <p-message severity="error" variant="simple" size="small" styleClass="mt-1">{{ error }}</p-message>
           }
         </div>
         <div>
-          <label for="email" class="mb-1 block text-sm font-medium">Correo *</label>
-          <input pInputText type="email" id="email" class="w-full" formControlName="email" [invalid]="!!errorFor('email')" />
+          <p-floatlabel variant="in">
+            <input pInputText type="email" id="email" class="w-full" formControlName="email" [invalid]="!!errorFor('email')" />
+            <label for="email">Correo *</label>
+          </p-floatlabel>
           @if (errorFor('email'); as error) {
             <p-message severity="error" variant="simple" size="small" styleClass="mt-1">{{ error }}</p-message>
           }
         </div>
         <div>
-          <label for="phone" class="mb-1 block text-sm font-medium">Teléfono *</label>
-          <input pInputText id="phone" class="w-full" formControlName="phone" placeholder="+593999999999" [invalid]="!!errorFor('phone')" />
+          <p-floatlabel variant="in">
+            <input pInputText id="phone" class="w-full" formControlName="phone" [invalid]="!!errorFor('phone')" />
+            <label for="phone">Teléfono *</label>
+          </p-floatlabel>
           @if (errorFor('phone'); as error) {
             <p-message severity="error" variant="simple" size="small" styleClass="mt-1">{{ error }}</p-message>
+          } @else {
+            <small class="mt-1 block text-xs text-muted-foreground">Ej. +593999999999 o 0999999999</small>
           }
         </div>
         <div class="sm:col-span-2">
-          <label for="service" class="mb-1 block text-sm font-medium">Servicio de interés</label>
-          <p-select
-            id="service"
-            formControlName="service"
-            [options]="serviceOptions"
-            optionLabel="label"
-            optionValue="value"
-            styleClass="w-full"
-          />
+          <p-floatlabel variant="in">
+            <p-select
+              id="service"
+              formControlName="service"
+              [options]="serviceOptions"
+              optionLabel="label"
+              optionValue="value"
+              styleClass="w-full"
+            />
+            <label for="service">Servicio de interés</label>
+          </p-floatlabel>
         </div>
         <div class="sm:col-span-2">
-          <label for="comment" class="mb-1 block text-sm font-medium">Comentario *</label>
-          <textarea
-            pTextarea
-            id="comment"
-            rows="5"
-            class="w-full"
-            formControlName="comment"
-            [invalid]="!!errorFor('comment')"
-          ></textarea>
+          <p-floatlabel variant="in">
+            <textarea
+              pTextarea
+              id="comment"
+              rows="5"
+              class="w-full"
+              formControlName="comment"
+              [invalid]="!!errorFor('comment')"
+            ></textarea>
+            <label for="comment">Comentario *</label>
+          </p-floatlabel>
           @if (errorFor('comment'); as error) {
             <p-message severity="error" variant="simple" size="small" styleClass="mt-1">{{ error }}</p-message>
           }

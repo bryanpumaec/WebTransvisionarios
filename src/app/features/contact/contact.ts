@@ -7,6 +7,7 @@ import { Textarea } from 'primeng/textarea';
 import { Select } from 'primeng/select';
 import { Button } from 'primeng/button';
 import { Message } from 'primeng/message';
+import { FloatLabel } from 'primeng/floatlabel';
 import { LucideClock, LucideMail, LucideMapPin, LucidePhone } from '@lucide/angular';
 
 import { ContactService } from '../../core/contact/contact.service';
@@ -25,7 +26,20 @@ const NAME_PATTERN = /^[A-Za-zÀ-ÿ'-]+(?:\s[A-Za-zÀ-ÿ'-]+)*$/;
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, Toast, InputText, Textarea, Select, Button, Message, LucideClock, LucideMail, LucideMapPin, LucidePhone],
+  imports: [
+    ReactiveFormsModule,
+    Toast,
+    InputText,
+    Textarea,
+    Select,
+    Button,
+    Message,
+    FloatLabel,
+    LucideClock,
+    LucideMail,
+    LucideMapPin,
+    LucidePhone,
+  ],
   templateUrl: './contact.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

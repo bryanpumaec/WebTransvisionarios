@@ -12,27 +12,6 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-app.use(express.json());
-
-/**
- * Receives the contact form submission.
- *
- * TODO: this only validates and logs the message on the server.
- * Real delivery (SMTP/Resend/CRM, etc.) still needs to be wired up —
- * pending confirmation from the client on which email/CRM service to use.
- */
-app.post('/api/contact', (req, res) => {
-  const { name, email, phone, comment } = req.body ?? {};
-
-  if (!name || !email || !phone || !comment) {
-    res.status(400).json({ ok: false, error: 'Faltan campos obligatorios.' });
-    return;
-  }
-
-  console.log('[contact] new message received:', req.body);
-  res.json({ ok: true });
-});
-
 /**
  * Serve static files from /browser
  */

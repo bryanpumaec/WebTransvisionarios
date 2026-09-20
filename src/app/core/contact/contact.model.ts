@@ -1,3 +1,5 @@
+import { FieldValue } from '@angular/fire/firestore';
+
 export type ServiceInterest = 'logisticos' | 'aduaneros' | 'transitos' | 'other';
 
 export interface ContactInput {
@@ -7,6 +9,11 @@ export interface ContactInput {
   phone: string;
   service: ServiceInterest;
   comment: string;
+}
+
+/** Shape stored in the Firestore `contact_requests` collection. */
+export interface ContactRequest extends ContactInput {
+  createdAt: FieldValue;
 }
 
 export interface ServiceOption {

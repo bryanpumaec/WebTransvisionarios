@@ -1,16 +1,24 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Firestore, addDoc, collection, serverTimestamp } from '@angular/fire/firestore';
+import { Observable, catchError, from, map, of } from 'rxjs';
 
-import { ContactInput, ContactResult } from './contact.model';
+import { ContactInput, ContactRequest, ContactResult } from './contact.model';
 
-@Injectable({ providedIn: 'root' })
+// Scoped to the /contacto route's providers (see contact.routes.ts), not root:
+// it depends on Firestore, which only exists in that route's environment injector.
+@Injectable()
 export class ContactService {
-  private readonly http = inject(HttpClient);
+  private readonly firestore = inject(Firestore);
 
   send(data: ContactInput): Observable<ContactResult> {
-    return this.http.post<ContactResult>('/api/contact', data).pipe(
-      catchError(() => of<ContactResult>({ ok: false, error: 'No pudimos enviar el mensaje. Intente nuevamente.' })),
+    const request: ContactRequest = { ...data, createdAt: serverTimestamp() };
+    const requests = collection(this.firestore, 'contact_requests');
+
+    return from(addDoc(requests, request)).pipe(
+      map(() => ({ ok: true }) as ContactResult),
+      catchError(() =>
+        of<ContactResult>({ ok: false, error: 'No pudimos enviar el mensaje. Intente nuevamente.' }),
+      ),
     );
   }
 }

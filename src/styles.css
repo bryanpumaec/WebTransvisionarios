@@ -1,37 +1,39 @@
 @import "tailwindcss";
 
 /*
- * Tokens de diseño provisionales (inferidos del código React original).
- * Ajusta estos valores cuando compartas el tailwind.config / index.css reales
- * del proyecto Vite para igualar el diseño al 100%.
+ * Paleta de marca: los dos colores base son primary (#192b6f, navy —
+ * fondos de contenedores/encabezados oscuros) y accent (#d8151e, rojo —
+ * botones, íconos y enlaces destacados). El resto de tokens se deriva
+ * matemáticamente de esos dos colores (mezclas hacia blanco/negro) para
+ * mantener toda la paleta cohesiva con la marca.
  */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Oswald", "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: #ffffff;
-  --color-foreground: #0f1b2d;
+  --color-foreground: #0b1332;
 
-  --color-primary: #10213b;
-  --color-primary-foreground: #f7f9fc;
+  --color-primary: #192b6f;
+  --color-primary-foreground: #f8f9fb;
 
-  --color-primary-deep: #0a1424;
-  --color-primary-foreground-deep: #f1f5f9;
+  --color-primary-deep: #0e1940;
+  --color-primary-foreground-deep: #f1f2f6;
 
-  --color-secondary: #f1f4f8;
-  --color-secondary-foreground: #10213b;
+  --color-secondary: #f1f2f6;
+  --color-secondary-foreground: #192b6f;
 
-  --color-accent: #f5a524;
-  --color-accent-foreground: #10213b;
+  --color-accent: #d8151e;
+  --color-accent-foreground: #ffffff;
 
   --color-card: #ffffff;
-  --color-card-foreground: #10213b;
+  --color-card-foreground: #0b1332;
 
-  --color-border: #e2e6ec;
-  --color-muted: #f1f4f8;
-  --color-muted-foreground: #5b6b82;
+  --color-border: #e3e6ee;
+  --color-muted: #f1f2f6;
+  --color-muted-foreground: #5e6b9a;
 
-  --color-input: #d7dee7;
+  --color-input: #d1d5e2;
   --color-ring: var(--color-accent);
   --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;

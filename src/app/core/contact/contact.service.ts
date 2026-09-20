@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, addDoc, collection, serverTimestamp } from '@angular/fire/firestore';
-import { Observable, catchError, from, map, of, tap } from 'rxjs';
+import { Observable, catchError, from, map, of } from 'rxjs';
 
 import { ContactInput, ContactRequest, ContactResult } from './contact.model';
 
@@ -14,15 +14,11 @@ export class ContactService {
     const request: ContactRequest = { ...data, createdAt: serverTimestamp() };
     const requests = collection(this.firestore, 'contact_requests');
 
-    console.debug('[ContactService] enviando a contact_requests', data);
-
     return from(addDoc(requests, request)).pipe(
-      tap((doc) => console.debug('[ContactService] documento creado', doc.id)),
       map(() => ({ ok: true }) as ContactResult),
-      catchError((error: unknown) => {
-        console.error('[ContactService] fallo al escribir en Firestore', error);
-        return of<ContactResult>({ ok: false, error: 'No pudimos enviar el mensaje. Intente nuevamente.' });
-      }),
+      catchError(() =>
+        of<ContactResult>({ ok: false, error: 'No pudimos enviar el mensaje. Intente nuevamente.' }),
+      ),
     );
   }
 }

@@ -2,6 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
+import { InputText } from 'primeng/inputtext';
+import { Textarea } from 'primeng/textarea';
+import { Select } from 'primeng/select';
+import { Button } from 'primeng/button';
+import { Message } from 'primeng/message';
 import { LucideClock, LucideMail, LucideMapPin, LucidePhone } from '@lucide/angular';
 
 import { ContactService } from '../../core/contact/contact.service';
@@ -11,10 +16,16 @@ import { SITE } from '../../core/site/site.data';
 
 type FormControlName = 'name' | 'company' | 'email' | 'phone' | 'service' | 'comment';
 
+// Solo dígitos, con un "+" opcional al inicio para códigos de país (ej. +593999999999).
+// Sin "+", el número debe tener exactamente 10 dígitos (celular/fijo local).
+const PHONE_PATTERN = /^(\+[0-9]{8,15}|[0-9]{10})$/;
+// Letras (incluye acentos/ñ), espacios, apóstrofes y guiones.
+const NAME_PATTERN = /^[A-Za-zÀ-ÿ'-]+(?:\s[A-Za-zÀ-ÿ'-]+)*$/;
+
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, Toast, LucideClock, LucideMail, LucideMapPin, LucidePhone],
+  imports: [ReactiveFormsModule, Toast, InputText, Textarea, Select, Button, Message, LucideClock, LucideMail, LucideMapPin, LucidePhone],
   templateUrl: './contact.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -27,16 +38,14 @@ export class Contact {
   protected readonly site = SITE;
   protected readonly serviceOptions = SERVICE_OPTIONS;
   protected readonly sending = signal(false);
-  protected readonly fieldClass =
-    'w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring';
 
   protected readonly form = this.fb.nonNullable.group({
-    name: ['', [Validators.required, Validators.maxLength(100)]],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern(NAME_PATTERN)]],
     company: ['', [Validators.maxLength(120)]],
     email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-    phone: ['', [Validators.required, Validators.maxLength(30)]],
+    phone: ['', [Validators.required, Validators.pattern(PHONE_PATTERN)]],
     service: ['logisticos', [Validators.required]],
-    comment: ['', [Validators.required, Validators.maxLength(1500)]],
+    comment: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(1500)]],
   });
 
   constructor() {
@@ -60,8 +69,19 @@ export class Contact {
     if (control.hasError('email')) {
       return 'Ingrese un correo válido.';
     }
+    if (control.hasError('minlength')) {
+      return `Mínimo ${control.getError('minlength').requiredLength} caracteres.`;
+    }
     if (control.hasError('maxlength')) {
       return `Máximo ${control.getError('maxlength').requiredLength} caracteres.`;
+    }
+    if (control.hasError('pattern')) {
+      if (name === 'phone') {
+        return 'Use solo números y, si aplica, el + del código de país (ej. +593999999999).';
+      }
+      if (name === 'name') {
+        return 'Ingrese solo letras y espacios.';
+      }
     }
     return null;
   }

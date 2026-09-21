@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:webtransvisionarios": "node dist/webtransvisionarios/server/server.mjs"
+    "test": "ng test"
   },
   "prettier": {
     "printWidth": 100,
@@ -37,7 +36,6 @@
     "@lucide/angular": "^1.47.0",
     "@primeng/themes": "^20.4.0",
     "@primeuix/themes": "^1.2.5",
-    "express": "^5.1.0",
     "firebase": "^12.19.0",
     "primeicons": "^8.0.1",
     "primeng": "^20.4.0",
@@ -50,7 +48,6 @@
     "@angular/compiler-cli": "^20.3.0",
     "@netlify/angular-runtime": "^4.0.0",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
     "jasmine-core": "~5.9.0",

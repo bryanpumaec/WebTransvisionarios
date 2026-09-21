@@ -4,9 +4,7 @@ import { Observable, catchError, from, map, of } from 'rxjs';
 
 import { ContactInput, ContactRequest, ContactResult } from './contact.model';
 
-// Scoped to the /contacto route's providers (see contact.routes.ts), not root:
-// it depends on Firestore, which only exists in that route's environment injector.
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ContactService {
   private readonly firestore = inject(Firestore);
 

@@ -18,7 +18,8 @@ export const routes: Routes = [
   },
   {
     path: 'contacto',
-    loadChildren: () => import('./features/contact/contact.routes').then((m) => m.CONTACT_ROUTES),
+    loadComponent: () => import('./features/contact/contact').then((m) => m.Contact),
+    title: 'Contacto y cotizaciones | Transvisionarios S.A.',
   },
   { path: '**', redirectTo: '' },
 ];
